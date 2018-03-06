@@ -15,14 +15,9 @@ G = [v1'*v1, v1'*v2, v1'*v3, v1'*v4;
      v4'*v1, v4'*v2, v4'*v3, v4'*v4];
 beta = inv(G) * [v1'*x, v2'*x, v3'*x, v4'*x]'
 
-A = [2 -1; 3 4];
-A^4
--275 * eye(2) + 84 * A
-inv(A)
-6/11 * eye(2) - 1/11 * A
-
 %% Problem 3 Check
-A = [2 -1; 3 4]
+A = [2 -1; 
+	3 4]
 A^4
 -275 * eye(2) + 84 * A
 inv(A)
@@ -30,17 +25,20 @@ eye(2) * 6/11 - A / 11
 
 b0 = 1.4249 - 0.0389i
 b1 = log(7/11) / (2 * sqrt(2) * j)
+
+
 %% Problem 4
+syms t
 A = [0 1 0;
     0 0 1;
     -6 -11 -6]
-[M, s] = eig(A)
-syms t
-M * expm(s * t) * inv(M)
+[M, S] = eig(A)
+M * expm(S * t) * inv(M)
 
 expm(A*t)
 
 %% Problem 5
+syms t
 A = [-1 1 0
     0 -2 1;
     0 0 -3]
@@ -56,6 +54,7 @@ A = [0 1 0; 0 0 1; -1 -2 -2]
 resolvent = inv(s * eye(3) - A)
 ilaplace(resolvent)
 % Check
+syms t
 expm(A * t)
 
 %% Problem 7
