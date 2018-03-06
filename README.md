@@ -1,3 +1,3 @@
 # ELEC 7500
 
-Control of State Variables" 
+Control of State Variables
