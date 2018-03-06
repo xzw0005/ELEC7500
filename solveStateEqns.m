@@ -53,8 +53,8 @@ b0*eye(3) + b1*A + b2 * A^2
 %% Problem 6
 syms s
 A = [0 1 0; 0 0 1; -1 -2 -2]
-phi = inv(s * eye(3) - A)
-ilaplace(phi)
+resolvent = inv(s * eye(3) - A)
+ilaplace(resolvent)
 % Check
 expm(A * t)
 
