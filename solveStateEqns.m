@@ -58,3 +58,21 @@ syms t
 expm(A * t)
 
 %% Problem 7
+B = [0 0 2]'
+eAt * B * 1
+syms t
+syms tau
+integrand = [ 2*exp(-(t - tau)) - 2*exp(-(t - tau)/2)*(cos((3^(1/2)*(t - tau))/2) - (3^(1/2)*sin((3^(1/2)*(t - tau))/2))/3)
+ 2*exp(-(t - tau)/2)*(cos((3^(1/2)*(t - tau))/2) + (3^(1/2)*sin((3^(1/2)*(t - tau))/2))/3) - 2*exp(-(t - tau))
+                        2*exp(-(t - tau)) - (4*3^(1/2)*exp(-(t - tau)/2)*sin((3^(1/2)*(t - tau))/2))/3]
+
+                    
+forcedResponse = int(integrand, tau, 0, t)
+x0 = [1 0 0]'
+naturalResponse = eAt * x0
+xt = naturalResponse + forcedResponse
+
+T = 0:.01:10;
+U = ones(size(T));
+X0 = [1 0 0];
+sys = ss(A, B, C, D);
