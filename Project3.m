@@ -39,6 +39,8 @@ A = [1 0 0 0;
 [M, S] = eig(A)
 
 B = [1 0 1 0]'
+
+%eigvals = diag(S)
 s1 = 1; s2 = -2; s3 = 3; s4 = -4;
 chi1 = s1 * eye(4) - A
 aug1 = [chi1 B]
