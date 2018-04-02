@@ -44,12 +44,10 @@ A = [0 1;
 A = [1 0 0 0;
     0 -2 0 0;
     0 0 3 0;
-    0 0 0 -4]
+    0 0 0 -4];
 [M, S] = eig(A)
 
-B = [1 0 1 0]'
-
-ctrb(A, B)
+B = [1 0 1 0]';
 %eigvals = diag(S)
 s1 = 1; s2 = -2; s3 = 3; s4 = -4;
 chi1 = s1 * eye(4) - A
@@ -67,3 +65,52 @@ rank(aug3)
 chi4 = s4 * eye(4) - A
 aug4 = [chi4 B]
 rank(aug4)
+
+C = ctrb(A, B)
+
+%% Problem 5
+A = [1 0 0 0;
+    0 -2 0 0;
+    0 0 3 0;
+    0 0 0 -4];
+B = [1 0 1 0]';
+
+syms s
+syms k1
+syms k2
+syms k3
+syms k4
+K = [k1 k2 k3 k4]
+Ac = A - B * K
+det(s * eye(4) - Ac)
+
+poly(A)
+poles = [-4, -2, -1, -3]
+place(A, B, poles)
+acker(A, B, poles)
+
+A = [2.5 -5.5 13;
+    .5 -3.5 7;
+    1.5 -1.5 2]
+eig(A)
+
+A=[0 1; 1 0];
+eig(A)
+B=[0 1]';
+ctrb(A, B)
+
+%% Problem 6
+exp(1)/(1-exp(1))
+
+A = [-1 0;
+    0 1];
+poles = eig(A)
+B = [0 1]';
+%ctrb(A, B)
+C = [0 1];
+x0 = [0 1];
+t = 0:0.01:1;
+u = -1.5820 * ones(size(t));
+sys = ss(A, B, C, 0)
+[y, t, x] = lsim(sys, u, t, x0);
+plot(t, x(:,2))
