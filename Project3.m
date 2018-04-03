@@ -100,8 +100,6 @@ B=[0 1]';
 ctrb(A, B)
 
 %% Problem 6
-exp(1)/(1-exp(1))
-
 A = [-1 0;
     0 1];
 poles = eig(A)
@@ -110,7 +108,12 @@ B = [0 1]';
 C = [0 1];
 x0 = [0 1];
 t = 0:0.01:1;
-u = -1.5820 * ones(size(t));
+u = exp(1)/(1-exp(1)) * ones(size(t));
 sys = ss(A, B, C, 0)
 [y, t, x] = lsim(sys, u, t, x0);
-plot(t, x(:,2))
+
+xx1 = x(:, 1);
+xx2 = x(:, 2);
+plot(t, xx1, t, xx2)
+legend('x[1]', 'x[2]')
+xlabel('t')
