@@ -56,18 +56,11 @@ linsolve(a, b)
 
 
 %% Simulation
-dx0 = [1 -1];
-t = 0:0.1:200;
+dx0 = [0 0];
+t = 0:0.01:1;
 du = zeros(size(t));
 sys = ss(A, B, C, 0)
 [dy, t, dx] = lsim(sys, du, t, dx0);
-xx1 = dx(:, 1);
-xx2 = dx(:, 2);
-subplot(2, 1, 1)
-plot(t, xx1)
-subplot(2, 1, 2)
-plot(t, xx2)
-
 
 K = [12 112.75]
 sys_cl = ss(A-B*K,B,C,0);
@@ -75,10 +68,6 @@ lsim(sys_cl, du, t,dx0);
 
 xx1 = dx(:, 1);
 xx2 = dx(:, 2);
-subplot(2, 1, 1)
-plot(t, xx1)
-subplot(2, 1, 2)
-plot(t, xx2)
-%plot(t, xx1, t, xx2)
-%legend('dx[1]', 'dx[2]')
+plot(t, xx1, t, xx2)
+legend('dx[1]', 'dx[2]')
 xlabel('t')
