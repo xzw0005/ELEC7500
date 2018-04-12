@@ -66,7 +66,7 @@ chi4 = s4 * eye(4) - A
 aug4 = [chi4 B]
 rank(aug4)
 
-C = ctrb(A, B)
+Mc = ctrb(A, B)
 
 %% Problem 5
 A = [1 0 0 0;
