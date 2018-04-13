@@ -6,10 +6,12 @@ function vdot = reduced_observer_linear(t, v)
     C = [1, 0];
     
     x=[v(1); v(2)];    % process state x is upper part of v
-    xhat=[v(3); v(4)]; % observer state xhat is lower part of z  
+%     xhat=[v(3); v(4)]; % observer state xhat is lower part of z  
     
-    Cbar = [0, 1];
-    zhat = Cbar * xhat;
+    yhat = v(3);
+    zhat = v(4);
+    
+    xhat = [yhat; zhat];
     
     % state feedback
     K = [12  112.75];
@@ -18,13 +20,14 @@ function vdot = reduced_observer_linear(t, v)
     A1 = A(1, 1); A2 = A(1, 2); A3 = A(2, 1); A4 = A(2, 2); 
     B1 = B(1); B2 = B(2);
     
-    y = C * x;
+    y = C * x;    
+    Cbar = [0, 1];
     z = Cbar * x;
     
     % Observer Gain for eigenvalue of (A-LC) placed at -2
     s = -2;
     L = (A4-s) / A2;
-% L=100;
+
     ydot = A1 * y + A2 * z + B1 * u;
     zdot = A3 * y + A4 * z + B2 * u;
     
@@ -33,8 +36,8 @@ function vdot = reduced_observer_linear(t, v)
     zdothat = A3 * y + A4 * zhat + B2 * u + L * (ydot - ydothat);
 
     xdot = A*x + B*u;
-    T = [C; Cbar];
-    xhatdot = inv(T) * [ydothat; zdothat];
+%     T = [C; Cbar];
+%     xhatdot = inv(T) * [ydothat; zdothat];
     
-    vdot = [xdot; xhatdot];
+    vdot = [xdot; ydot; zdothat;];
 end

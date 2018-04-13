@@ -14,17 +14,20 @@ function vdot = reduced_observer_linear(t, v)
     % state feedback
     K = [12  112.75];
     u = -K*xhat;
-    
-    A1 = A(1, 1); A2 = A(1, 2); A3 = A(2, 1); A4 = A(2, 2); 
-    B1 = B(1); B2 = B(2);
-    
-    y = C * x;
+       
+    y = C*x;
     z = Cbar * x;
     
+    A1 = -1/4;
+    A2 = 1/4;
+    A3 = 1/4;
+    A4 = -5/16;
+    B1 = 1/4;
+    B2 = 0;
     % Observer Gain for eigenvalue of (A-LC) placed at -2
-    s = -2;
-    L = (A4-s) / A2;
-% L=100;
+%     s = -2;
+%     L = (A4-s) / A2;
+    
     ydot = A1 * y + A2 * z + B1 * u;
     zdot = A3 * y + A4 * z + B2 * u;
     

@@ -1,8 +1,13 @@
 % Run simulation of the model named "reduced_observer_linear"
 tspan=[0 5];  % initial and final time
-v0=[1; 0; 0; 1];    % initial state
+v0=[.1; 0.1; 0; 0];    % initial state
+% v0=[1; 0; 0; 1];    % initial state
 
 [t,v]=ode45('reduced_observer_linear', tspan, v0);  % Run the simulation
+
+for i=1:length(v)
+    v(i, 3) = v(i,3) + v0(1);
+end
 
 % Plot the results
 plot(t,v,'linewidth',2)  % plot the state vs. time with fat lines

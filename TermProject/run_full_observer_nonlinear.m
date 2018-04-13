@@ -1,6 +1,6 @@
 % Run simulation of the model named "full_observer_linear"
-tspan=[0 30];  % initial and final time
-z0=[1; 1; 0; 0];    % initial state
+tspan=[0 15];  % initial and final time
+z0=[.1; .1; 0; 0];    % initial state
 
 [t,z]=ode45('full_observer_nonlinear', tspan, z0);  % Run the simulation
 
