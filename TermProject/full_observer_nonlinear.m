@@ -14,10 +14,7 @@ function zdot = full_observer_nonlinear(t, z)
     y = C * x;
     yhat = C * xhat;
 
-    a1 = 4;
-    a2 = 4;
-    k1 = 1;
-    k2 = .5;
+    a1 = 4;     a2 = 4;    k1 = 1;    k2 = .5;
 %     xdot = zeros(2, 1);
 %     xdot(1) = u/a1 - k1 / a1 * sqrt(x(1) - x(2)); 
 %     xdot(2) = k1/a1*sqrt(x(1)-x(2)) - k2/a2*sqrt(x(2));
